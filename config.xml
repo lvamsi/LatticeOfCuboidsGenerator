@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<LocConfig>
+    <DBConfig>
+        <host>localhost</host>
+        <username>root</username>
+        <password>root</password>
+        <schema>loc</schema>
+    </DBConfig>
+    <tables>
+        <facts>
+            <fact>f_market</fact>
+        </facts>
+        <dimensions>
+            <dimension>d_customer.Region</dimension>
+            <dimension>d_orders</dimension>
+            <dimension>d_products</dimension>
+            <dimension>d_shipping</dimension>
+        </dimensions>
+    </tables>
+</LocConfig>
