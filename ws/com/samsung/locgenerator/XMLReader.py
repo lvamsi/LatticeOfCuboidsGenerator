@@ -21,12 +21,24 @@ class XMLReader():
 
     def __extract_dimensions(self, root):
         dimensions_el = root.find("tables/dimensions")
-        dimensions = []
+        dimensions = {}
         for dimension_el in dimensions_el:
             dot_position = dimension_el.text.find(".")
-            dimension = dimension_el.text if dot_position == -1 else dimension_el.text[:dot_position]
-            dimensions.append(dimension)
+            if dot_position == -1:
+                dimensions[dimension_el.text] = None
+            else:
+                dimensions[dimension_el.text[:dot_position]] = dimension_el.text[dot_position+1:]
         return dimensions
+
+    def __extract_aggregations(self,root):
+        aggregations_el = root.find("aggregations")
+        aggregations = {}
+        for aggregation_el in aggregations_el:
+            fact_variable = str(aggregation_el.find("factvariable").text).strip()
+            functions_el = aggregation_el.find("functions")
+            aggregations[fact_variable]=[str(function_el.text).strip() for function_el in functions_el]
+        return aggregations
+
 
     def parseXML(self):
         tree = ET.parse(self.xml_path)
@@ -34,4 +46,5 @@ class XMLReader():
         db_config = self.__extract_dbconfig(root)
         facts = self.__extract_facts(root=root)
         dimensions = self.__extract_dimensions(root=root)
-        return db_config, facts, dimensions
+        aggregations = self.__extract_aggregations(root=root)
+        return db_config, facts, dimensions,aggregations

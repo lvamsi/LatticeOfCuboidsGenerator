@@ -1,10 +1,10 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <LocConfig>
     <DBConfig>
         <host>localhost</host>
         <username>root</username>
         <password>root</password>
-        <schema>loc</schema>
+        <schema>sales</schema>
     </DBConfig>
     <tables>
         <facts>
@@ -17,4 +17,48 @@
             <dimension>d_shipping</dimension>
         </dimensions>
     </tables>
+    <aggregations>
+        <aggregation>
+            <factvariable>Sales</factvariable>
+            <functions>
+                <function>sum</function>
+                <function>average</function>
+            </functions>
+        </aggregation>
+        <aggregation>
+            <factvariable>Discount</factvariable>
+            <functions>
+                <function>sum</function>
+                <function>average</function>
+            </functions>
+        </aggregation>
+        <aggregation>
+            <factvariable>Order_Quantity</factvariable>
+            <functions>
+                <function>sum</function>
+                <function>average</function>
+            </functions>
+        </aggregation>
+        <aggregation>
+            <factvariable>Profit</factvariable>
+            <functions>
+                <function>sum</function>
+                <function>average</function>
+            </functions>
+        </aggregation>
+        <aggregation>
+            <factvariable>Shipping_Cost</factvariable>
+            <functions>
+                <function>sum</function>
+                <function>average</function>
+            </functions>
+        </aggregation>
+        <aggregation>
+            <factvariable>Product_Base_Margin</factvariable>
+            <functions>
+                <function>sum</function>
+                <function>average</function>
+            </functions>
+        </aggregation>
+    </aggregations>
 </LocConfig>

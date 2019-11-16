@@ -7,3 +7,5 @@ class QueryTemplates:
         'COLUMN_DEFINITION': "`{column_name}` {data_type} DEFAULT NULL",
         'CREATE_QUEY': "CREATE TABLE `{table_name}` ( {pk_col_defn} , {fk_col_defn} ,{agg_fact_col_defn}) ENGINE=InnoDB DEFAULT CHARSET=utf8;"
     }
+    GET_COLUMN_TYPE = "select column_type from information_schema.columns WHERE table_schema='{schema}' AND table_name='{table_name}' and column_name = '{column_name}';"
+    DROP_TABLE = "DROP TABLE IF EXISTS {table_name};"
